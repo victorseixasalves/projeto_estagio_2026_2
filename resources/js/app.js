@@ -7,6 +7,8 @@ window.Alpine = Alpine;
 Alpine.start();
 
 document.addEventListener('DOMContentLoaded', () => {
+    const cores = ['#6D1B36', '#1B7A43'];
+    
     const botoes = document.querySelectorAll('.theme-toggle');
     if (botoes.length === 0) return;
 
@@ -22,6 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const escuro = document.documentElement.classList.contains('dark');
             localStorage.setItem('tema', escuro ? 'escuro' : 'claro');
             atualizarIcones();
+        });
+    });
+
+    document.querySelectorAll('.admin-login-btn').forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            const cor = cores[Math.floor(Math.random() * cores.length)];
+            btn.style.backgroundColor = cor;
+            btn.style.borderColor = cor;
+            btn.style.color = '#ffffff';
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.backgroundColor = '';
+            btn.style.borderColor = '';
+            btn.style.color = '';
         });
     });
 
