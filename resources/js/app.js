@@ -7,24 +7,23 @@ window.Alpine = Alpine;
 Alpine.start();
 
 document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('theme-toggle');
-    if (!btn) return;
+    const botoes = document.querySelectorAll('.theme-toggle');
+    if (botoes.length === 0) return;
 
-    const iconSun = document.getElementById('icon-sun');
-    const iconMoon = document.getElementById('icon-moon');
-
-    function atualizarIcone() {
+    function atualizarIcones() {
         const escuro = document.documentElement.classList.contains('dark');
-        iconSun.classList.toggle('hidden', escuro);
-        iconMoon.classList.toggle('hidden', !escuro);
+        document.querySelectorAll('.icon-sun').forEach(icon => icon.classList.toggle('hidden', escuro));
+        document.querySelectorAll('.icon-moon').forEach(icon => icon.classList.toggle('hidden', !escuro));
     }
 
-    btn.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-        const escuro = document.documentElement.classList.contains('dark');
-        localStorage.setItem('tema', escuro ? 'escuro' : 'claro');
-        atualizarIcone();
+    botoes.forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const escuro = document.documentElement.classList.contains('dark');
+            localStorage.setItem('tema', escuro ? 'escuro' : 'claro');
+            atualizarIcones();
+        });
     });
 
-    atualizarIcone();
+    atualizarIcones();
 });
