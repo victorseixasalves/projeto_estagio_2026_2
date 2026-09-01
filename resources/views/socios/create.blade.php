@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="{{ app()->getLocale() }}" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sócio-Torcedor | Fluminense FC</title>
+    <title>{{ __('Sócio-Torcedor') }} | Fluminense FC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
@@ -16,6 +16,8 @@
         }
     </script>
 </head>
+<body class="font-sans bg-[#F5F3F0] dark:bg-[#16151A] text-[#16151A] dark:text-white transition-colors">
+
     <!-- Padrão de fundo -->
     <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div
@@ -24,9 +26,6 @@
             style="background-repeat:repeat; background-size:140px 160px; background-image:url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22160%22%20viewBox%3D%220%200%20140%20160%22%3E%3Cpath%20d%3D%22M70%2010%20L110%2024%20L110%2070%20C110%20100%2094%20120%2070%20138%20C46%20120%2030%20100%2030%2070%20L30%2024%20Z%22%20fill%3D%22none%22%20stroke%3D%22%23000000%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%2270%22%20y%3D%2280%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2222%22%20font-weight%3D%22700%22%20fill%3D%22%23000000%22%20text-anchor%3D%22middle%22%3EFFC%3C%2Ftext%3E%3C%2Fsvg%3E');"
         ></div>
     </div>
-        <rect width="100%" height="100%" fill="url(#escudos)" />
-    </svg>
-<body class="font-sans bg-[#F5F3F0] dark:bg-[#16151A] text-[#16151A] dark:text-white transition-colors">
 
     <!-- Header -->
     <header class="sticky top-0 z-10 backdrop-blur bg-[#F5F3F0]/90 dark:bg-[#16151A]/90 border-b border-black/5 dark:border-white/5">
@@ -37,20 +36,25 @@
                 </div>
                 <div class="leading-tight">
                     <p class="font-display font-semibold tracking-wide text-sm sm:text-base">FLUMINENSE F.C.</p>
-                    <p class="text-xs text-black/60 dark:text-white/60">Programa de Sócio-Torcedor</p>
+                    <p class="text-xs text-black/60 dark:text-white/60">{{ __('Programa de Sócio-Torcedor') }}</p>
                 </div>
             </div>
 
             <div class="flex items-center gap-3">
                 <a href="{{ route('login') }}"
                     class="admin-login-btn hidden sm:inline-flex items-center text-sm font-medium border rounded-full px-4 py-1.5 transition-colors duration-200 text-[#16151A] border-black/30 dark:text-white dark:border-white/50">
-                    Acesso Admin
+                    {{ __('Acesso Admin') }}
+                </a>
+
+                <a href="{{ route('locale.switch', app()->getLocale() === 'pt' ? 'en' : 'pt') }}"
+                    class="w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-xs font-semibold">
+                    {{ app()->getLocale() === 'pt' ? 'EN' : 'PT' }}
                 </a>
 
                 <button
                     type="button"
                     class="theme-toggle w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                    aria-label="Alternar tema claro/escuro"
+                    aria-label="{{ __('Alternar tema claro/escuro') }}"
                 >
                     <svg class="icon-sun hidden w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4"/>
@@ -75,54 +79,53 @@
         <!-- Hero -->
         <section class="pt-14 sm:pt-20 pb-12 sm:pb-16 text-center animate-[fadeUp_0.6s_ease-out]">
             <h1 class="font-display font-semibold text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
-                Vista a camisa.<br class="hidden sm:block">
-                <span class="text-[#6D1B36] dark:text-[#e0567f]">Faça parte do</span> Fluminense F.C.
+                {{ __('Vista a camisa.') }}<br class="hidden sm:block">
+                <span class="text-[#6D1B36] dark:text-[#e0567f]">{{ __('Faça parte do') }}</span> {{ __('Fluminense F.C.') }}
             </h1>
             <p class="mt-5 text-black/70 dark:text-white/70 max-w-md mx-auto text-[15px] sm:text-base leading-relaxed">
-                Sócio-torcedor não assiste de fora: prioridade em ingressos, desconto na loja
-                e acesso antecipado aos grandes jogos no Maracanã.
+                {{ __('Sócio-torcedor não assiste de fora: prioridade em ingressos, desconto na loja e acesso antecipado aos grandes jogos no Maracanã.') }}
             </p>
         </section>
 
         <!-- Cards dos Planos -->
         <section class="pb-14 sm:pb-20">
-            <h2 class="font-display font-medium text-lg sm:text-xl mb-5 text-center">Escolha seu plano</h2>
+            <h2 class="font-display font-medium text-lg sm:text-xl mb-5 text-center">{{ __('Escolha seu plano') }}</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
                 <div class="rounded-xl p-5 bg-white dark:bg-[#1E1D24] border border-black/10 dark:border-white/10 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/40">
-                    <h3 class="font-display font-medium text-[#1B7A43]">Tradição Tricolor</h3>
+                    <h3 class="font-display font-medium text-[#1B7A43]">{{ __('Tradição Tricolor') }}</h3>
                     <ul class="mt-3 space-y-1.5 text-sm text-black/65 dark:text-white/65">
-                        <li>Carteirinha digital</li>
-                        <li>10% de desconto na loja oficial</li>
-                        <li>Newsletter exclusiva</li>
+                        <li>{{ __('Carteirinha digital') }}</li>
+                        <li>{{ __('10% de desconto na loja oficial') }}</li>
+                        <li>{{ __('Newsletter exclusiva') }}</li>
                     </ul>
                 </div>
 
                 <div class="rounded-xl p-5 bg-white dark:bg-[#1E1D24] border border-black/10 dark:border-white/10 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/40">
-                    <h3 class="font-display font-medium text-[#1B7A43]">FluKids</h3>
+                    <h3 class="font-display font-medium text-[#1B7A43]">{{ __('FluKids') }}</h3>
                     <ul class="mt-3 space-y-1.5 text-sm text-black/65 dark:text-white/65">
-                        <li>Valor reduzido até 12 anos</li>
-                        <li>Kit de boas-vindas infantil</li>
-                        <li>Acesso à área kids no estádio</li>
+                        <li>{{ __('Valor reduzido até 12 anos') }}</li>
+                        <li>{{ __('Kit de boas-vindas infantil') }}</li>
+                        <li>{{ __('Acesso à área kids no estádio') }}</li>
                     </ul>
                 </div>
 
                 <div class="relative rounded-xl p-5 bg-white dark:bg-[#1E1D24] border-2 border-[#6D1B36] sm:col-span-2 lg:col-span-1 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/40">
-                    <span class="absolute -top-3 left-5 bg-[#6D1B36] text-white text-xs font-medium px-2.5 py-1 rounded-full">Mais popular</span>
-                    <h3 class="font-display font-medium text-[#6D1B36] dark:text-[#e0567f] mt-1">Guerreiro do Laranjeiras</h3>
+                    <span class="absolute -top-3 left-5 bg-[#6D1B36] text-white text-xs font-medium px-2.5 py-1 rounded-full">{{ __('Mais popular') }}</span>
+                    <h3 class="font-display font-medium text-[#6D1B36] dark:text-[#e0567f] mt-1">{{ __('Guerreiro do Laranjeiras') }}</h3>
                     <ul class="mt-3 space-y-1.5 text-sm text-black/65 dark:text-white/65">
-                        <li>25% de desconto em ingressos</li>
-                        <li>Fila prioritária de compra</li>
-                        <li>20% de desconto na loja oficial</li>
+                        <li>{{ __('25% de desconto em ingressos') }}</li>
+                        <li>{{ __('Fila prioritária de compra') }}</li>
+                        <li>{{ __('20% de desconto na loja oficial') }}</li>
                     </ul>
                 </div>
 
                 <div class="rounded-xl p-5 bg-white dark:bg-[#1E1D24] border border-black/10 dark:border-white/10 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/40">
-                    <h3 class="font-display font-medium text-[#1B7A43]">Eterno Campeão</h3>
+                    <h3 class="font-display font-medium text-[#1B7A43]">{{ __('Eterno Campeão') }}</h3>
                     <ul class="mt-3 space-y-1.5 text-sm text-black/65 dark:text-white/65">
-                        <li>Ingresso garantido em todo jogo</li>
-                        <li>Camisa oficial todo ano</li>
-                        <li>Convite para eventos do clube</li>
+                        <li>{{ __('Ingresso garantido em todo jogo') }}</li>
+                        <li>{{ __('Camisa oficial todo ano') }}</li>
+                        <li>{{ __('Convite para eventos do clube') }}</li>
                     </ul>
                 </div>
 
@@ -132,22 +135,22 @@
         <!-- Formulário -->
         <section class="pb-16 sm:pb-24">
             <div class="max-w-xl mx-auto rounded-2xl p-6 sm:p-8 bg-white dark:bg-[#1E1D24] border border-black/10 dark:border-white/10">
-                <h2 class="font-display font-medium text-xl mb-1">Quero ser sócio</h2>
-                <p class="text-sm text-black/60 dark:text-white/60 mb-6">Preencha seus dados e entraremos em contato para confirmar.</p>
+                <h2 class="font-display font-medium text-xl mb-1">{{ __('Quero ser sócio') }}</h2>
+                <p class="text-sm text-black/60 dark:text-white/60 mb-6">{{ __('Preencha seus dados e entraremos em contato para confirmar.') }}</p>
 
                 <form method="POST" action="{{ route('socios.store') }}" class="space-y-4">
                     @csrf
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label for="nome" class="block text-sm font-medium mb-1.5">Nome completo</label>
+                            <label for="nome" class="block text-sm font-medium mb-1.5">{{ __('Nome completo') }}</label>
                             <input type="text" name="nome" id="nome" value="{{ old('nome') }}"
                                 class="w-full rounded-lg bg-[#F5F3F0] dark:bg-[#1E1D24] border border-black/15 dark:border-white/15 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B7A43]">
                             @error('nome') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
 
                         <div>
-                            <label for="email" class="block text-sm font-medium mb-1.5">Email</label>
+                            <label for="email" class="block text-sm font-medium mb-1.5">{{ __('Email') }}</label>
                             <input type="email" name="email" id="email" value="{{ old('email') }}"
                                 class="w-full rounded-lg bg-[#F5F3F0] dark:bg-[#1E1D24] border border-black/15 dark:border-white/15 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B7A43]">
                             @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -155,35 +158,35 @@
                     </div>
 
                     <div>
-                        <label for="tipo" class="block text-sm font-medium mb-1.5">Plano</label>
+                        <label for="tipo" class="block text-sm font-medium mb-1.5">{{ __('Plano') }}</label>
                         <select name="tipo" id="tipo"
                             class="w-full rounded-lg bg-[#F5F3F0] dark:bg-[#1E1D24] border border-black/15 dark:border-white/15 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B7A43]">
-                            <option value="">Selecione um plano</option>
-                            <option value="Tradição Tricolor" {{ old('tipo') == 'Tradição Tricolor' ? 'selected' : '' }}>Tradição Tricolor</option>
-                            <option value="Guerreiro do Laranjeiras" {{ old('tipo') == 'Guerreiro do Laranjeiras' ? 'selected' : '' }}>Guerreiro do Laranjeiras</option>
-                            <option value="Eterno Campeão" {{ old('tipo') == 'Eterno Campeão' ? 'selected' : '' }}>Eterno Campeão</option>
-                            <option value="FluKids" {{ old('tipo') == 'FluKids' ? 'selected' : '' }}>FluKids</option>
+                            <option value="">{{ __('Selecione um plano') }}</option>
+                            <option value="Tradição Tricolor" {{ old('tipo') == 'Tradição Tricolor' ? 'selected' : '' }}>{{ __('Tradição Tricolor') }}</option>
+                            <option value="Guerreiro do Laranjeiras" {{ old('tipo') == 'Guerreiro do Laranjeiras' ? 'selected' : '' }}>{{ __('Guerreiro do Laranjeiras') }}</option>
+                            <option value="Eterno Campeão" {{ old('tipo') == 'Eterno Campeão' ? 'selected' : '' }}>{{ __('Eterno Campeão') }}</option>
+                            <option value="FluKids" {{ old('tipo') == 'FluKids' ? 'selected' : '' }}>{{ __('FluKids') }}</option>
                         </select>
                         @error('tipo') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label for="data" class="block text-sm font-medium mb-1.5">Data de início desejada</label>
+                            <label for="data" class="block text-sm font-medium mb-1.5">{{ __('Data de início desejada') }}</label>
                             <input type="date" name="data" id="data" value="{{ old('data') }}"
                                 class="w-full rounded-lg bg-[#F5F3F0] dark:bg-[#1E1D24] border border-black/15 dark:border-white/15 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B7A43]">
                             @error('data') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
 
                         <div>
-                            <label for="setor" class="block text-sm font-medium mb-1.5">Setor preferido</label>
+                            <label for="setor" class="block text-sm font-medium mb-1.5">{{ __('Setor preferido') }}</label>
                             <select name="setor" id="setor"
                                 class="w-full rounded-lg bg-[#F5F3F0] dark:bg-[#1E1D24] border border-black/15 dark:border-white/15 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B7A43]">
-                                <option value="">Selecione um setor</option>
-                                <option value="Norte" {{ old('setor') == 'Norte' ? 'selected' : '' }}>Norte</option>
-                                <option value="Sul" {{ old('setor') == 'Sul' ? 'selected' : '' }}>Sul</option>
-                                <option value="Maracanã Mais" {{ old('setor') == 'Maracanã Mais' ? 'selected' : '' }}>Maracanã Mais</option>
-                                <option value="Visitante" {{ old('setor') == 'Visitante' ? 'selected' : '' }}>Visitante</option>
+                                <option value="">{{ __('Selecione um setor') }}</option>
+                                <option value="Norte" {{ old('setor') == 'Norte' ? 'selected' : '' }}>{{ __('Norte') }}</option>
+                                <option value="Sul" {{ old('setor') == 'Sul' ? 'selected' : '' }}>{{ __('Sul') }}</option>
+                                <option value="Maracanã Mais" {{ old('setor') == 'Maracanã Mais' ? 'selected' : '' }}>{{ __('Maracanã Mais') }}</option>
+                                <option value="Visitante" {{ old('setor') == 'Visitante' ? 'selected' : '' }}>{{ __('Visitante') }}</option>
                             </select>
                             @error('setor') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
@@ -191,7 +194,7 @@
 
                     <button type="submit"
                         class="w-full bg-[#6D1B36] hover:bg-[#5a1629] transition-colors text-white font-medium text-sm py-3 rounded-lg mt-2">
-                        Enviar cadastro
+                        {{ __('Enviar cadastro') }}
                     </button>
                 </form>
             </div>
@@ -200,7 +203,7 @@
     </main>
 
     <footer class="text-center text-black/40 dark:text-white/40 text-xs py-8 border-t border-black/5 dark:border-white/5">
-        Fluminense F.C. — Programa de Sócio-Torcedor (projeto de teste técnico)
+        {{ __('Fluminense F.C. — Programa de Sócio-Torcedor (projeto de teste técnico)') }}
     </footer>
 
 </body>

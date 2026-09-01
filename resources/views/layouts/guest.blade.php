@@ -30,19 +30,26 @@
             ></div>
         </div>
 
-        <button
-            type="button"
-            class="theme-toggle fixed top-4 right-4 w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors bg-white dark:bg-[#1E1D24]"
-            aria-label="Alternar tema claro/escuro"
-        >
-            <svg class="icon-sun hidden w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="4"/>
-                <path stroke-linecap="round" d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
-            </svg>
-            <svg class="icon-moon w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 1020.354 15.354z"/>
-            </svg>
-        </button>
+        <div class="fixed top-4 right-4 flex items-center gap-2">
+            <a href="{{ route('locale.switch', app()->getLocale() === 'pt' ? 'en' : 'pt') }}"
+                class="w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors bg-white dark:bg-[#1E1D24] text-xs font-semibold">
+                {{ app()->getLocale() === 'pt' ? 'EN' : 'PT' }}
+            </a>
+
+            <button
+                type="button"
+                class="theme-toggle w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors bg-white dark:bg-[#1E1D24]"
+                aria-label="Alternar tema claro/escuro"
+            >
+                <svg class="icon-sun hidden w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path stroke-linecap="round" d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+                </svg>
+                <svg class="icon-moon w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 1020.354 15.354z"/>
+                </svg>
+            </button>
+        </div>
 
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 px-4">
             <a href="/" class="flex items-center gap-3 mb-2">

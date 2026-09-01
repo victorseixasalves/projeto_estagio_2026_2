@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-display font-semibold text-xl leading-tight">
-            Painel de Sócios
+            {{ __('Painel de Sócios') }}
         </h2>
     </x-slot>
 
@@ -12,19 +12,19 @@
 
                 @if ($socios->isEmpty())
                     <p class="text-center text-black/50 dark:text-white/50 py-16 text-sm">
-                        Nenhum sócio cadastrado ainda.
+                        {{ __('Nenhum sócio cadastrado ainda.') }}
                     </p>
                 @else
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm">
                             <thead>
                                 <tr class="border-b border-black/10 dark:border-white/10 text-left text-black/50 dark:text-white/50">
-                                    <th class="px-5 py-3 font-medium">Nome</th>
-                                    <th class="px-5 py-3 font-medium">Email</th>
-                                    <th class="px-5 py-3 font-medium">Plano</th>
-                                    <th class="px-5 py-3 font-medium">Data</th>
-                                    <th class="px-5 py-3 font-medium">Setor</th>
-                                    <th class="px-5 py-3 font-medium">Status</th>
+                                    <th class="px-5 py-3 font-medium">{{ __('Nome') }}</th>
+                                    <th class="px-5 py-3 font-medium">{{ __('Email') }}</th>
+                                    <th class="px-5 py-3 font-medium">{{ __('Plano') }}</th>
+                                    <th class="px-5 py-3 font-medium">{{ __('Data') }}</th>
+                                    <th class="px-5 py-3 font-medium">{{ __('Setor') }}</th>
+                                    <th class="px-5 py-3 font-medium">{{ __('Status') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-black/5 dark:divide-white/5">
@@ -35,9 +35,9 @@
                                             : 'bg-[#6D1B36]/5 dark:bg-[#6D1B36]/10' }}">
                                         <td class="px-5 py-3 font-medium">{{ $socio->nome }}</td>
                                         <td class="px-5 py-3 text-black/60 dark:text-white/60">{{ $socio->email }}</td>
-                                        <td class="px-5 py-3">{{ $socio->tipo }}</td>
+                                        <td class="px-5 py-3">{{ __($socio->tipo) }}</td>
                                         <td class="px-5 py-3 text-black/60 dark:text-white/60">{{ $socio->data->format('d/m/Y') }}</td>
-                                        <td class="px-5 py-3">{{ $socio->setor }}</td>
+                                        <td class="px-5 py-3">{{ __($socio->setor) }}</td>
                                         <td class="px-5 py-3">
                                             @php
                                                 $cores = [
@@ -47,7 +47,7 @@
                                                 ];
                                             @endphp
                                             <span class="inline-block px-2.5 py-1 rounded-full text-xs font-medium {{ $cores[$socio->status] }}">
-                                                {{ ucfirst($socio->status) }}
+                                                {{ ucfirst(__($socio->status)) }}
                                             </span>
                                         </td>
                                     </tr>

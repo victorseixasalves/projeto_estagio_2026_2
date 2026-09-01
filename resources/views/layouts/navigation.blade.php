@@ -15,16 +15,21 @@
                             {{ request()->routeIs('dashboard')
                                 ? 'border-[#6D1B36] text-[#16151A] dark:text-white'
                                 : 'border-transparent text-black/50 dark:text-white/50 hover:text-black/80 dark:hover:text-white/80' }}">
-                        Painel
+                        {{ __('Painel') }}
                     </a>
                 </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:gap-2">
+                <a href="{{ route('locale.switch', app()->getLocale() === 'pt' ? 'en' : 'pt') }}"
+                    class="w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-xs font-semibold">
+                    {{ app()->getLocale() === 'pt' ? 'EN' : 'PT' }}
+                </a>
+
                 <button
                     type="button"
                     class="theme-toggle w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                    aria-label="Alternar tema claro/escuro"
+                    aria-label="{{ __('Alternar tema claro/escuro') }}"
                 >
                     <svg class="icon-sun hidden w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="4"/>
@@ -49,7 +54,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            Perfil
+                            {{ __('Perfil') }}
                         </x-dropdown-link>
 
                         <form method="POST" action="{{ route('logout') }}">
@@ -57,7 +62,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                Sair
+                                {{ __('Sair') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -82,7 +87,7 @@
                     {{ request()->routeIs('dashboard')
                         ? 'border-[#6D1B36] text-[#16151A] dark:text-white'
                         : 'border-transparent text-black/50 dark:text-white/50' }}">
-                Painel
+                {{ __('Painel') }}
             </a>
         </div>
 
@@ -92,24 +97,30 @@
                     <div class="font-medium text-base">{{ Auth::user()->name }}</div>
                     <div class="text-sm text-black/50 dark:text-white/50">{{ Auth::user()->email }}</div>
                 </div>
-                <button
-                    type="button"
-                    class="theme-toggle w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10"
-                    aria-label="Alternar tema claro/escuro"
-                >
-                    <svg class="icon-sun hidden w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="4"/>
-                        <path stroke-linecap="round" d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
-                    </svg>
-                    <svg class="icon-moon w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 1020.354 15.354z"/>
-                    </svg>
-                </button>
+                <div class="flex items-center gap-2">
+                    <a href="{{ route('locale.switch', app()->getLocale() === 'pt' ? 'en' : 'pt') }}"
+                        class="w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10 text-xs font-semibold">
+                        {{ app()->getLocale() === 'pt' ? 'EN' : 'PT' }}
+                    </a>
+                    <button
+                        type="button"
+                        class="theme-toggle w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10"
+                        aria-label="{{ __('Alternar tema claro/escuro') }}"
+                    >
+                        <svg class="icon-sun hidden w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path stroke-linecap="round" d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+                        </svg>
+                        <svg class="icon-moon w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 1020.354 15.354z"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('Perfil') }}
                 </x-responsive-nav-link>
 
                 <form method="POST" action="{{ route('logout') }}">
@@ -117,7 +128,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Sair') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
