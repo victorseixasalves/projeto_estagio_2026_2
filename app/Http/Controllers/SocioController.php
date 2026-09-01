@@ -10,6 +10,16 @@ use Illuminate\View\View;
 class SocioController extends Controller
 {
     /**
+     * Lista todos os sócios cadastrados, ordenados pela data de início.
+     */
+    public function index(): View
+    {
+        $socios = Socio::orderBy('data')->get();
+
+        return view('dashboard', compact('socios'));
+    }
+
+    /**
      * Mostra a página pública com as informações e o formulário de cadastro.
      */
     public function create(): View
