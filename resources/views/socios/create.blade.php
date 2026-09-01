@@ -72,7 +72,7 @@
 
         @if (session('success'))
             <div class="mt-6 bg-[#1B7A43]/10 border border-[#1B7A43]/30 text-[#1B7A43] dark:text-green-300 px-4 py-3 rounded-lg text-sm text-center">
-                {{ session('success') }}
+                {{ __(session('success')) }}
             </div>
         @endif
 
