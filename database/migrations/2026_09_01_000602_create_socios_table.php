@@ -13,6 +13,23 @@ return new class extends Migration
     {
         Schema::create('socios', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->string('email');
+            $table->enum('tipo', [
+                'Tradição Tricolor',
+                'Guerreiro do Laranjeiras',
+                'Eterno Campeão',
+                'FluKids',
+            ]);
+            $table->date('data');
+            $table->enum('setor', [
+                'Norte',
+                'Sul',
+                'Maracanã Mais',
+                'Visitante',
+            ]);
+            $table->enum('status', ['pendente', 'confirmado', 'cancelado'])
+                ->default('pendente');
             $table->timestamps();
         });
     }
