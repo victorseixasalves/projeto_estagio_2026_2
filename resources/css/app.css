@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes fadeUp {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes driftShields {
+        from { background-position: 0 0; }
+        to { background-position: 140px 160px; }
+    }
+
+    #shield-bg {
+        animation: driftShields 15s linear infinite;
+    }
