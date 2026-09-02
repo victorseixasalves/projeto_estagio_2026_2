@@ -74,6 +74,28 @@
 
             </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="bg-white dark:bg-[#1E1D24] border border-black/10 dark:border-white/10 rounded-xl p-6">
+                    <h3 class="font-display font-medium text-base mb-4">{{ __('Sócios por Plano') }}</h3>
+                    <canvas id="grafico-planos" height="220"></canvas>
+                </div>
+
+                <div class="bg-white dark:bg-[#1E1D24] border border-black/10 dark:border-white/10 rounded-xl p-6">
+                    <h3 class="font-display font-medium text-base mb-4">{{ __('Sócios por Setor') }}</h3>
+                    <canvas id="grafico-setores" height="220"></canvas>
+                </div>
+            </div>
+
+            @php
+                $porTipoTraduzido = collect($porTipo)->mapWithKeys(fn ($valor, $chave) => [__($chave) => $valor]);
+                $porSetorTraduzido = collect($porSetor)->mapWithKeys(fn ($valor, $chave) => [__($chave) => $valor]);
+            @endphp
+
+            <script>
+                window.dadosPorTipo = @json($porTipoTraduzido);
+                window.dadosPorSetor = @json($porSetorTraduzido);
+            </script>
+
         </div>
     </div>
 </x-app-layout>

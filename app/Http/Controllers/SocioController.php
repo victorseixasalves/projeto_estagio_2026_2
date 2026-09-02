@@ -24,7 +24,15 @@ class SocioController extends Controller
 
         $socios = Socio::orderBy($coluna, $direcao)->get();
 
-        return view('dashboard', compact('socios', 'coluna', 'direcao'));
+        $porTipo = Socio::selectRaw('tipo, count(*) as total')
+            ->groupBy('tipo')
+            ->pluck('total', 'tipo');
+
+        $porSetor = Socio::selectRaw('setor, count(*) as total')
+            ->groupBy('setor')
+            ->pluck('total', 'setor');
+
+        return view('dashboard', compact('socios', 'coluna', 'direcao', 'porTipo', 'porSetor'));
     }
 
     /**
