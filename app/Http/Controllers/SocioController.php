@@ -12,11 +12,19 @@ class SocioController extends Controller
     /**
      * Lista todos os sócios cadastrados, ordenados pela data de início.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $socios = Socio::orderBy('data')->get();
+        $colunasPermitidas = ['nome', 'email', 'tipo', 'data', 'setor', 'status'];
 
-        return view('dashboard', compact('socios'));
+        $coluna = in_array($request->query('coluna'), $colunasPermitidas)
+            ? $request->query('coluna')
+            : 'data';
+
+        $direcao = $request->query('direcao') === 'desc' ? 'desc' : 'asc';
+
+        $socios = Socio::orderBy($coluna, $direcao)->get();
+
+        return view('dashboard', compact('socios', 'coluna', 'direcao'));
     }
 
     /**

@@ -19,12 +19,27 @@
                         <table class="w-full text-sm">
                             <thead>
                                 <tr class="border-b border-black/10 dark:border-white/10 text-left text-black/50 dark:text-white/50">
-                                    <th class="px-5 py-3 font-medium">{{ __('Nome') }}</th>
-                                    <th class="px-5 py-3 font-medium">{{ __('Email') }}</th>
-                                    <th class="px-5 py-3 font-medium">{{ __('Plano') }}</th>
-                                    <th class="px-5 py-3 font-medium">{{ __('Data') }}</th>
-                                    <th class="px-5 py-3 font-medium">{{ __('Setor') }}</th>
-                                    <th class="px-5 py-3 font-medium">{{ __('Status') }}</th>
+                                    @foreach ([
+                                    'nome' => 'Nome',
+                                    'email' => 'Email',
+                                    'tipo' => 'Plano',
+                                    'data' => 'Data',
+                                    'setor' => 'Setor',
+                                    'status' => 'Status',
+                                ] as $campo => $rotulo)
+                                    <th class="px-5 py-3 font-medium">
+                                        <a href="{{ route('dashboard', [
+                                        'coluna' => $campo,
+                                        'direcao' => ($coluna === $campo && $direcao === 'asc') ? 'desc' : 'asc',
+                                        ]) }}"
+                                        class="inline-flex items-center gap-1 hover:text-[#16151A] dark:hover:text-white transition-colors">
+                                        {{ __($rotulo) }}
+                                        @if ($coluna === $campo)
+                                        <span class="text-[10px]">{{ $direcao === 'asc' ? '▲' : '▼' }}</span>
+                                        @endif
+                                    </a>
+                                </th>
+                                @endforeach
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-black/5 dark:divide-white/5">
