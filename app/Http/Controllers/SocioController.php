@@ -62,4 +62,28 @@ class SocioController extends Controller
             ->route('socios.create')
             ->with('success', 'Cadastro enviado com sucesso! Em breve entraremos em contato.');
     }
+
+    /**
+     * Confirma o cadastro de um sócio (muda o status para "confirmado").
+     */
+    public function confirmar(Socio $socio): RedirectResponse
+    {
+        $socio->update(['status' => 'confirmado']);
+
+        return redirect()
+            ->route('dashboard')
+            ->with('success', 'Cadastro confirmado com sucesso.');
+    }
+
+    /**
+     * Rejeita e remove definitivamente um cadastro de sócio.
+     */
+    public function destroy(Socio $socio): RedirectResponse
+    {
+        $socio->delete();
+
+        return redirect()
+            ->route('dashboard')
+            ->with('success', 'Cadastro rejeitado e removido.');
+    }
 }

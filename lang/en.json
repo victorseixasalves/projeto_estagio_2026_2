@@ -81,5 +81,12 @@
     "Sócios por Plano": "Members by Plan",
     "Sócios por Setor": "Members by Sector",
 
+    "Aceitar": "Accept",
+    "Rejeitar": "Reject",
+    "Ações": "Actions",
+    "Cadastro confirmado com sucesso.": "Registration confirmed successfully.",
+    "Cadastro rejeitado e removido.": "Registration rejected and removed.",
+    "Tem certeza? Essa ação apaga o cadastro permanentemente.": "Are you sure? This action permanently deletes the registration.",
+    
     "Cadastro enviado com sucesso! Em breve entraremos em contato.": "Registration submitted successfully! We'll be in touch soon."
 }

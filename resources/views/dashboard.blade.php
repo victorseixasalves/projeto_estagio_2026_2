@@ -40,6 +40,7 @@
                                     </a>
                                 </th>
                                 @endforeach
+                                <th class="px-5 py-3 font-medium">{{ __('Ações') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-black/5 dark:divide-white/5">
@@ -64,6 +65,30 @@
                                             <span class="inline-block px-2.5 py-1 rounded-full text-xs font-medium {{ $cores[$socio->status] }}">
                                                 {{ ucfirst(__($socio->status)) }}
                                             </span>
+                                        </td>
+                                        <td class="px-5 py-3">
+                                            @if ($socio->status === 'pendente')
+                                                <div class="flex items-center gap-2">
+                                                    <form method="POST" action="{{ route('socios.confirmar', $socio) }}">
+                                                        @csrf
+                                                        @method('patch')
+                                                        <button type="submit"
+                                                            class="px-3 py-1 rounded-full text-xs font-medium bg-[#1B7A43] hover:bg-[#166437] text-white transition-colors">
+                                                            {{ __('Aceitar') }}
+                                                        </button>
+                                                    </form>
+
+                                                    <form method="POST" action="{{ route('socios.destroy', $socio) }}"
+                                                        onsubmit="return confirm('{{ __('Tem certeza? Essa ação apaga o cadastro permanentemente.') }}');">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                            class="px-3 py-1 rounded-full text-xs font-medium bg-[#6D1B36] hover:bg-[#5a1629] text-white transition-colors">
+                                                            {{ __('Rejeitar') }}
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
