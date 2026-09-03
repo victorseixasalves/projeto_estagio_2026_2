@@ -52,10 +52,12 @@ class SocioController extends Controller
     {
         $validated = $request->validate([
             'nome' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:socios,email'],
             'tipo' => ['required', 'in:Tradição Tricolor,Guerreiro do Laranjeiras,Eterno Campeão,FluKids'],
             'data' => ['required', 'date', 'after_or_equal:today'],
             'setor' => ['required', 'in:Norte,Sul,Maracanã Mais,Visitante'],
+        ], [
+            'email.unique' => __('Este email já possui um cadastro de sócio ativo.'),
         ]);
 
         Socio::create($validated);
