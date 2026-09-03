@@ -6,6 +6,8 @@ use App\Models\Socio;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use App\Mail\SocioStatusMail;
+use Illuminate\Support\Facades\Mail;
 
 class SocioController extends Controller
 {
@@ -64,11 +66,14 @@ class SocioController extends Controller
     }
 
     /**
-     * Confirma o cadastro de um sócio (muda o status para "confirmado").
+     * Confirma o cadastro de um sócio (muda o status para "confirmado")
+     * e notifica por email.
      */
     public function confirmar(Socio $socio): RedirectResponse
     {
         $socio->update(['status' => 'confirmado']);
+
+        Mail::to($socio->email)->send(new SocioStatusMail($socio, 'confirmado'));
 
         return redirect()
             ->route('dashboard')
@@ -76,10 +81,13 @@ class SocioController extends Controller
     }
 
     /**
-     * Rejeita e remove definitivamente um cadastro de sócio.
+     * Rejeita e remove definitivamente um cadastro de sócio,
+     * notificando por email antes da remoção.
      */
     public function destroy(Socio $socio): RedirectResponse
     {
+        Mail::to($socio->email)->send(new SocioStatusMail($socio, 'cancelado'));
+
         $socio->delete();
 
         return redirect()
