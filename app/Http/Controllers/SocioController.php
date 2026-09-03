@@ -26,11 +26,13 @@ class SocioController extends Controller
 
         $socios = Socio::orderBy($coluna, $direcao)->get();
 
-        $porTipo = Socio::selectRaw('tipo, count(*) as total')
+        $porTipo = Socio::where('status', 'confirmado')
+            ->selectRaw('tipo, count(*) as total')
             ->groupBy('tipo')
             ->pluck('total', 'tipo');
 
-        $porSetor = Socio::selectRaw('setor, count(*) as total')
+        $porSetor = Socio::where('status', 'confirmado')
+            ->selectRaw('setor, count(*) as total')
             ->groupBy('setor')
             ->pluck('total', 'setor');
 
