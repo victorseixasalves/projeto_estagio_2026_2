@@ -162,10 +162,11 @@
                         <select name="tipo" id="tipo"
                             class="w-full rounded-lg bg-[#F5F3F0] dark:bg-[#1E1D24] border border-black/15 dark:border-white/15 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B7A43]">
                             <option value="">{{ __('Selecione um plano') }}</option>
-                            <option value="Tradição Tricolor" {{ old('tipo') == 'Tradição Tricolor' ? 'selected' : '' }}>{{ __('Tradição Tricolor') }}</option>
-                            <option value="Guerreiro do Laranjeiras" {{ old('tipo') == 'Guerreiro do Laranjeiras' ? 'selected' : '' }}>{{ __('Guerreiro do Laranjeiras') }}</option>
-                            <option value="Eterno Campeão" {{ old('tipo') == 'Eterno Campeão' ? 'selected' : '' }}>{{ __('Eterno Campeão') }}</option>
-                            <option value="FluKids" {{ old('tipo') == 'FluKids' ? 'selected' : '' }}>{{ __('FluKids') }}</option>
+                            @foreach ($planos as $plano)
+                                <option value="{{ $plano->nome }}" {{ old('tipo') == $plano->nome ? 'selected' : '' }}>
+                                    {{ __($plano->nome) }}
+                                </option>
+                            @endforeach
                         </select>
                         @error('tipo') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
@@ -183,10 +184,11 @@
                             <select name="setor" id="setor"
                                 class="w-full rounded-lg bg-[#F5F3F0] dark:bg-[#1E1D24] border border-black/15 dark:border-white/15 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B7A43]">
                                 <option value="">{{ __('Selecione um setor') }}</option>
-                                <option value="Norte" {{ old('setor') == 'Norte' ? 'selected' : '' }}>{{ __('Norte') }}</option>
-                                <option value="Sul" {{ old('setor') == 'Sul' ? 'selected' : '' }}>{{ __('Sul') }}</option>
-                                <option value="Maracanã Mais" {{ old('setor') == 'Maracanã Mais' ? 'selected' : '' }}>{{ __('Maracanã Mais') }}</option>
-                                <option value="Visitante" {{ old('setor') == 'Visitante' ? 'selected' : '' }}>{{ __('Visitante') }}</option>
+                                @foreach ($setores as $setor)
+                                    <option value="{{ $setor->nome }}" {{ old('setor') == $setor->nome ? 'selected' : '' }}>
+                                        {{ __($setor->nome) }}
+                                    </option>
+                                @endforeach
                             </select>
                             @error('setor') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>

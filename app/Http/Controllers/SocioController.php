@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Socio;
+use App\Models\Plano;
+use App\Models\Setor;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Validation\Rule;
 use App\Mail\SocioStatusMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -44,7 +47,10 @@ class SocioController extends Controller
      */
     public function create(): View
     {
-        return view('socios.create');
+        $planos = Plano::ativos()->orderBy('nome')->get();
+        $setores = Setor::ativos()->orderBy('nome')->get();
+
+        return view('socios.create', compact('planos', 'setores'));
     }
 
     /**
@@ -52,12 +58,15 @@ class SocioController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $planosAtivos = Plano::ativos()->pluck('nome')->toArray();
+        $setoresAtivos = Setor::ativos()->pluck('nome')->toArray();
+
         $validated = $request->validate([
             'nome' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:socios,email'],
-            'tipo' => ['required', 'in:Tradição Tricolor,Guerreiro do Laranjeiras,Eterno Campeão,FluKids'],
+            'tipo' => ['required', Rule::in($planosAtivos)],
             'data' => ['required', 'date', 'after_or_equal:today'],
-            'setor' => ['required', 'in:Norte,Sul,Maracanã Mais,Visitante'],
+            'setor' => ['required', Rule::in($setoresAtivos)],
         ], [
             'email.unique' => __('Este email já possui um cadastro de sócio ativo.'),
         ]);

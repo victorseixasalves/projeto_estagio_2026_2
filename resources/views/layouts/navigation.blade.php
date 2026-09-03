@@ -17,6 +17,20 @@
                                 : 'border-transparent text-black/50 dark:text-white/50 hover:text-black/80 dark:hover:text-white/80' }}">
                         {{ __('Painel') }}
                     </a>
+                    <a href="{{ route('planos.index') }}"
+                        class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 transition-colors
+                            {{ request()->routeIs('planos.*')
+                                ? 'border-[#6D1B36] text-[#16151A] dark:text-white'
+                                : 'border-transparent text-black/50 dark:text-white/50 hover:text-black/80 dark:hover:text-white/80' }}">
+                        {{ __('Planos de Sócio') }}
+                    </a>
+                    <a href="{{ route('setores.index') }}"
+                        class="inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 transition-colors
+                            {{ request()->routeIs('setores.*')
+                                ? 'border-[#6D1B36] text-[#16151A] dark:text-white'
+                                : 'border-transparent text-black/50 dark:text-white/50 hover:text-black/80 dark:hover:text-white/80' }}">
+                        {{ __('Setores do Estádio') }}
+                    </a>
                 </div>
             </div>
 
@@ -88,6 +102,20 @@
                         ? 'border-[#6D1B36] text-[#16151A] dark:text-white'
                         : 'border-transparent text-black/50 dark:text-white/50' }}">
                 {{ __('Painel') }}
+            </a>
+            <a href="{{ route('planos.index') }}"
+                class="block pl-3 pr-4 py-2 border-l-4 text-sm font-medium
+                    {{ request()->routeIs('planos.*')
+                        ? 'border-[#6D1B36] text-[#16151A] dark:text-white'
+                        : 'border-transparent text-black/50 dark:text-white/50' }}">
+                {{ __('Planos de Sócio') }}
+            </a>
+            <a href="{{ route('setores.index') }}"
+                class="block pl-3 pr-4 py-2 border-l-4 text-sm font-medium
+                    {{ request()->routeIs('setores.*')
+                        ? 'border-[#6D1B36] text-[#16151A] dark:text-white'
+                        : 'border-transparent text-black/50 dark:text-white/50' }}">
+                {{ __('Setores do Estádio') }}
             </a>
         </div>
 
