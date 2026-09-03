@@ -26,9 +26,17 @@ class PlanoController extends Controller
     {
         $validated = $request->validate([
             'nome' => ['required', 'string', 'max:255', 'unique:planos,nome'],
+            'beneficios' => ['nullable', 'string'],
+            'destaque' => ['nullable', 'boolean'],
         ], [
             'nome.unique' => __('Já existe um plano com esse nome.'),
         ]);
+
+        $validated['destaque'] = $request->boolean('destaque');
+
+        if ($validated['destaque']) {
+            Plano::where('destaque', true)->update(['destaque' => false]);
+        }
 
         Plano::create($validated);
 
@@ -36,15 +44,23 @@ class PlanoController extends Controller
     }
 
     /**
-     * Atualiza o nome de um plano existente.
+     * Atualiza um plano existente (nome, benefícios e destaque).
      */
     public function update(Request $request, Plano $plano): RedirectResponse
     {
         $validated = $request->validate([
             'nome' => ['required', 'string', 'max:255', 'unique:planos,nome,'.$plano->id],
+            'beneficios' => ['nullable', 'string'],
+            'destaque' => ['nullable', 'boolean'],
         ], [
             'nome.unique' => __('Já existe um plano com esse nome.'),
         ]);
+
+        $validated['destaque'] = $request->boolean('destaque');
+
+        if ($validated['destaque']) {
+            Plano::where('destaque', true)->where('id', '!=', $plano->id)->update(['destaque' => false]);
+        }
 
         $plano->update($validated);
 
