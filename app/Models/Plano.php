@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plano extends Model
 {
-    protected $fillable = ['nome', 'beneficios', 'destaque'];
+    protected $fillable = ['nome', 'ativo', 'beneficios', 'destaque'];
 
     protected $casts = [
         'ativo' => 'boolean',
@@ -32,4 +32,4 @@ class Plano extends Model
 
         return array_filter(array_map('trim', explode("\n", $this->beneficios)));
     }
-}   
+}

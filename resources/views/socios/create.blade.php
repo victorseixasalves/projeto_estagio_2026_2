@@ -92,42 +92,30 @@
             <h2 class="font-display font-medium text-lg sm:text-xl mb-5 text-center">{{ __('Escolha seu plano') }}</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
-                <div class="rounded-xl p-5 bg-white dark:bg-[#1E1D24] border border-black/10 dark:border-white/10 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/40">
-                    <h3 class="font-display font-medium text-[#1B7A43]">{{ __('Tradição Tricolor') }}</h3>
-                    <ul class="mt-3 space-y-1.5 text-sm text-black/65 dark:text-white/65">
-                        <li>{{ __('Carteirinha digital') }}</li>
-                        <li>{{ __('10% de desconto na loja oficial') }}</li>
-                        <li>{{ __('Newsletter exclusiva') }}</li>
-                    </ul>
-                </div>
+                @foreach ($planos as $plano)
+                    <div class="relative rounded-xl p-5 bg-white dark:bg-[#1E1D24] border transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/40
+                        {{ $plano->destaque ? 'border-2 border-[#6D1B36]' : 'border-black/10 dark:border-white/10' }}">
 
-                <div class="rounded-xl p-5 bg-white dark:bg-[#1E1D24] border border-black/10 dark:border-white/10 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/40">
-                    <h3 class="font-display font-medium text-[#1B7A43]">{{ __('FluKids') }}</h3>
-                    <ul class="mt-3 space-y-1.5 text-sm text-black/65 dark:text-white/65">
-                        <li>{{ __('Valor reduzido até 12 anos') }}</li>
-                        <li>{{ __('Kit de boas-vindas infantil') }}</li>
-                        <li>{{ __('Acesso à área kids no estádio') }}</li>
-                    </ul>
-                </div>
+                        @if ($plano->destaque)
+                            <span class="absolute -top-3 left-5 bg-[#6D1B36] text-white text-xs font-medium px-2.5 py-1 rounded-full">
+                                {{ __('Mais popular') }}
+                            </span>
+                        @endif
 
-                <div class="relative rounded-xl p-5 bg-white dark:bg-[#1E1D24] border-2 border-[#6D1B36] sm:col-span-2 lg:col-span-1 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/40">
-                    <span class="absolute -top-3 left-5 bg-[#6D1B36] text-white text-xs font-medium px-2.5 py-1 rounded-full">{{ __('Mais popular') }}</span>
-                    <h3 class="font-display font-medium text-[#6D1B36] dark:text-[#e0567f] mt-1">{{ __('Guerreiro do Laranjeiras') }}</h3>
-                    <ul class="mt-3 space-y-1.5 text-sm text-black/65 dark:text-white/65">
-                        <li>{{ __('25% de desconto em ingressos') }}</li>
-                        <li>{{ __('Fila prioritária de compra') }}</li>
-                        <li>{{ __('20% de desconto na loja oficial') }}</li>
-                    </ul>
-                </div>
+                        <h3 class="font-display font-medium mt-1
+                            {{ $plano->destaque ? 'text-[#6D1B36] dark:text-[#e0567f]' : 'text-[#1B7A43]' }}">
+                            {{ __($plano->nome) }}
+                        </h3>
 
-                <div class="rounded-xl p-5 bg-white dark:bg-[#1E1D24] border border-black/10 dark:border-white/10 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/40">
-                    <h3 class="font-display font-medium text-[#1B7A43]">{{ __('Eterno Campeão') }}</h3>
-                    <ul class="mt-3 space-y-1.5 text-sm text-black/65 dark:text-white/65">
-                        <li>{{ __('Ingresso garantido em todo jogo') }}</li>
-                        <li>{{ __('Camisa oficial todo ano') }}</li>
-                        <li>{{ __('Convite para eventos do clube') }}</li>
-                    </ul>
-                </div>
+                        @if ($plano->beneficios_lista)
+                            <ul class="mt-3 space-y-1.5 text-sm text-black/65 dark:text-white/65">
+                                @foreach ($plano->beneficios_lista as $beneficio)
+                                    <li>{{ __($beneficio) }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                @endforeach
 
             </div>
         </section>
