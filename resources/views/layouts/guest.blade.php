@@ -58,7 +58,7 @@
                 </div>
                 <div class="leading-tight text-left">
                     <p class="font-display font-semibold tracking-wide text-base">FLUMINENSE F.C.</p>
-                    <p class="text-xs text-black/60 dark:text-white/60">Área do administrador</p>
+                    <p class="text-xs text-black/60 dark:text-white/60">{{ __('Área do administrador') }}</p>
                 </div>
             </a>
 
