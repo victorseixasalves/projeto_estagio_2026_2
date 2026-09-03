@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('planos', function (Blueprint $table) {
             $table->id();
+            $table->string('nome')->unique();
+            $table->boolean('ativo')->default(true);
             $table->timestamps();
         });
     }
