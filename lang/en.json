@@ -1,4 +1,5 @@
 {
+    "// ==================== PERFIL / CONTA ====================": "",
     "Perfil": "Profile",
     "Sair": "Log Out",
     "Informações do Perfil": "Profile Information",
@@ -17,6 +18,7 @@
     "Senha": "Password",
     "Cancelar": "Cancel",
 
+    "// ==================== PÁGINA PÚBLICA - HEADER / HERO ====================": "",
     "Sócio-Torcedor": "Fan Membership",
     "Programa de Sócio-Torcedor": "Fan Membership Program",
     "Acesso Admin": "Admin Access",
@@ -27,6 +29,7 @@
     "Sócio-torcedor não assiste de fora: prioridade em ingressos, desconto na loja e acesso antecipado aos grandes jogos no Maracanã.": "A fan member doesn't watch from the outside: ticket priority, store discounts, and early access to the big games at Maracanã.",
     "Escolha seu plano": "Choose your plan",
 
+    "// ==================== PLANOS - CARDS ====================": "",
     "Tradição Tricolor": "Tricolor Tradition",
     "Carteirinha digital": "Digital membership card",
     "10% de desconto na loja oficial": "10% discount at the official store",
@@ -48,6 +51,7 @@
     "Camisa oficial todo ano": "Official jersey every year",
     "Convite para eventos do clube": "Invitation to club events",
 
+    "// ==================== FORMULÁRIO PÚBLICO ====================": "",
     "Quero ser sócio": "I want to become a member",
     "Preencha seus dados e entraremos em contato para confirmar.": "Fill in your details and we'll get in touch to confirm.",
     "Nome completo": "Full name",
@@ -62,31 +66,34 @@
     "Visitante": "Away",
     "Enviar cadastro": "Submit registration",
     "Fluminense F.C. — Programa de Sócio-Torcedor (projeto de teste técnico)": "Fluminense F.C. — Fan Membership Program (technical test project)",
+    "Cadastro enviado com sucesso! Em breve entraremos em contato.": "Registration submitted successfully! We'll be in touch soon.",
 
+    "// ==================== PAINEL ADMIN ====================": "",
     "Painel": "Dashboard",
     "Painel de Sócios": "Members Panel",
     "Nenhum sócio cadastrado ainda.": "No members registered yet.",
     "Status": "Status",
-
-    "pendente": "pending",
-    "confirmado": "confirmed",
-    "cancelado": "cancelled",
-
-    "Lembrar de mim": "Remember me",
-    "Esqueceu sua senha?": "Forgot your password?",
-    "Entrar": "Log in",
-
     "Data": "Date",
     "Setor": "Sector",
     "Sócios por Plano": "Members by Plan",
     "Sócios por Setor": "Members by Sector",
-
     "Aceitar": "Accept",
     "Rejeitar": "Reject",
     "Ações": "Actions",
     "Cadastro confirmado com sucesso.": "Registration confirmed successfully.",
     "Cadastro rejeitado e removido.": "Registration rejected and removed.",
     "Tem certeza? Essa ação apaga o cadastro permanentemente.": "Are you sure? This action permanently deletes the registration.",
-    
-    "Cadastro enviado com sucesso! Em breve entraremos em contato.": "Registration submitted successfully! We'll be in touch soon."
+
+    "// ==================== STATUS DOS SÓCIOS ====================": "",
+    "pendente": "pending",
+    "confirmado": "confirmed",
+    "cancelado": "cancelled",
+
+    "// ==================== LOGIN / AUTENTICAÇÃO ====================": "",
+    "Lembrar de mim": "Remember me",
+    "Esqueceu sua senha?": "Forgot your password?",
+    "Entrar": "Log in",
+
+    "// ==================== MENSAGENS DE ERRO / VALIDAÇÃO ====================": "",
+    "Este email já possui um cadastro de sócio ativo.": "This email already has an active membership registration."
 }
