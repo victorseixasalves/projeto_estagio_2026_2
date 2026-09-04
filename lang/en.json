@@ -107,6 +107,13 @@
     "Status do setor atualizado.": "Sector status updated.",
     "Benefícios (um por linha)": "Benefits (one per line)",
     "Marcar como \"Mais popular\"": "Mark as \"Most popular\"",
+    "Marcar como plano em destaque (aparece como \"Mais popular\")": "Mark as featured plan (shown as \"Most popular\")",
+    "Destaque": "Featured",
+    "Excluir": "Delete",
+    "Tem certeza que deseja excluir o plano :nome? Essa ação não pode ser desfeita.": "Are you sure you want to delete the plan :nome? This action cannot be undone.",
+    "Tem certeza que deseja excluir o setor :nome? Essa ação não pode ser desfeita.": "Are you sure you want to delete the sector :nome? This action cannot be undone.",
+    "Plano excluído com sucesso.": "Plan deleted successfully.",
+    "Setor excluído com sucesso.": "Sector deleted successfully.",
 
     "// ==================== STATUS DOS SÓCIOS ====================": "",
     "pendente": "pending",
