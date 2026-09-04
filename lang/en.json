@@ -83,6 +83,7 @@
     "Cadastro confirmado com sucesso.": "Registration confirmed successfully.",
     "Cadastro rejeitado e removido.": "Registration rejected and removed.",
     "Tem certeza? Essa ação apaga o cadastro permanentemente.": "Are you sure? This action permanently deletes the registration.",
+    "Tem certeza que deseja excluir o cadastro de :nome? Essa ação não pode ser desfeita.": "Are you sure you want to delete the registration for :nome? This action cannot be undone.",
     "Planos de Sócio": "Membership Plans",
     "Setores do Estádio": "Stadium Sectors",
     "Adicionar novo plano": "Add new plan",

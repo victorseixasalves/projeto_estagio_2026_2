@@ -88,6 +88,16 @@
                                                         </button>
                                                     </form>
                                                 </div>
+                                            @else
+                                                <form method="POST" action="{{ route('socios.destroy', $socio) }}"
+                                                    onsubmit="return confirm('{{ __('Tem certeza que deseja excluir o cadastro de :nome? Essa ação não pode ser desfeita.', ['nome' => $socio->nome]) }}');">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit"
+                                                        class="px-3 py-1 rounded-full text-xs font-medium bg-[#6D1B36] hover:bg-[#5a1629] text-white transition-colors">
+                                                        {{ __('Excluir') }}
+                                                    </button>
+                                                </form>
                                             @endif
                                         </td>
                                     </tr>
