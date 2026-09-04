@@ -7,7 +7,8 @@ use App\Http\Controllers\PlanoController;
 use App\Http\Controllers\SetorController;
 
 Route::get('/', [SocioController::class, 'create'])->name('socios.create');
-Route::post('/', [SocioController::class, 'store'])->name('socios.store');
+Route::post('/', [SocioController::class, 'store'])->middleware('throttle:3,1')->name('socios.store');
+
 
 Route::get('/dashboard', [SocioController::class, 'index'])
     ->middleware(['auth'])

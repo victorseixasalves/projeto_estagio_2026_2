@@ -58,6 +58,14 @@ class SocioController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Honeypot: se esse campo escondido veio preenchido, é bot.
+        // Fingimos sucesso (sem salvar nada) para não revelar a proteção.
+        if ($request->filled('site_web')) {
+            return redirect()
+                ->route('socios.create')
+                ->with('success', __('Cadastro enviado com sucesso! Em breve entraremos em contato.'));
+        }
+
         $planosAtivos = Plano::ativos()->pluck('nome')->toArray();
         $setoresAtivos = Setor::ativos()->pluck('nome')->toArray();
 

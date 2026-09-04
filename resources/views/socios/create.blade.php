@@ -128,6 +128,8 @@
 
                 <form method="POST" action="{{ route('socios.store') }}" class="space-y-4">
                     @csrf
+                    <!-- Honeypot anti-spam: campo invisível para humanos, mas que bots costumam preencher -->
+                    <input type="text" name="site_web" value="" style="position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
