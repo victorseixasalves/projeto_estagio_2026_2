@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/planos', [PlanoController::class, 'store'])->name('planos.store');
     Route::patch('/planos/{plano}', [PlanoController::class, 'update'])->name('planos.update');
     Route::patch('/planos/{plano}/alternar', [PlanoController::class, 'alternar'])->name('planos.alternar');
+    Route::delete('/planos/{plano}', [PlanoController::class, 'destroy'])->name('planos.destroy');
 
     Route::get('/setores', [SetorController::class, 'index'])->name('setores.index');
     Route::post('/setores', [SetorController::class, 'store'])->name('setores.store');

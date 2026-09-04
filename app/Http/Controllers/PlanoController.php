@@ -76,4 +76,14 @@ class PlanoController extends Controller
 
         return redirect()->route('planos.index')->with('success', __('Status do plano atualizado.'));
     }
+
+    /**
+     * Exclui definitivamente um plano.
+     */
+    public function destroy(Plano $plano): RedirectResponse
+    {
+        $plano->delete();
+
+        return redirect()->route('planos.index')->with('success', __('Plano excluído com sucesso.'));
+    }
 }
