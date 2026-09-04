@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/setores', [SetorController::class, 'store'])->name('setores.store');
     Route::patch('/setores/{setor}', [SetorController::class, 'update'])->name('setores.update');
     Route::patch('/setores/{setor}/alternar', [SetorController::class, 'alternar'])->name('setores.alternar');
+    Route::delete('/setores/{setor}', [SetorController::class, 'destroy'])->name('setores.destroy');
 });
 
 Route::get('/idioma/{locale}', function (string $locale) {

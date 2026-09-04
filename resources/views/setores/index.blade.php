@@ -60,11 +60,18 @@
                                             @csrf
                                             @method('patch')
                                             <button type="submit"
-                                                class="px-3 py-1 rounded-full text-xs font-medium transition-colors
-                                                    {{ $setor->ativo
-                                                        ? 'bg-[#6D1B36] hover:bg-[#5a1629] text-white'
-                                                        : 'bg-[#1B7A43] hover:bg-[#166437] text-white' }}">
+                                                class="px-3 py-1 rounded-full text-xs font-medium border border-black/15 dark:border-white/15 hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
                                                 {{ $setor->ativo ? __('Desativar') : __('Ativar') }}
+                                            </button>
+                                        </form>
+
+                                        <form method="POST" action="{{ route('setores.destroy', $setor) }}"
+                                            onsubmit="return confirm('{{ __('Tem certeza que deseja excluir o setor :nome? Essa ação não pode ser desfeita.', ['nome' => $setor->nome]) }}');">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit"
+                                                class="px-3 py-1 rounded-full text-xs font-medium bg-[#6D1B36] hover:bg-[#5a1629] text-white transition-colors">
+                                                {{ __('Excluir') }}
                                             </button>
                                         </form>
                                     </div>

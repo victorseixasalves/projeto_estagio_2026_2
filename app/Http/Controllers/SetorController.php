@@ -60,4 +60,14 @@ class SetorController extends Controller
 
         return redirect()->route('setores.index')->with('success', __('Status do setor atualizado.'));
     }
+
+    /**
+     * Exclui definitivamente um setor.
+     */
+    public function destroy(Setor $setor): RedirectResponse
+    {
+        $setor->delete();
+
+        return redirect()->route('setores.index')->with('success', __('Setor excluído com sucesso.'));
+    }
 }
