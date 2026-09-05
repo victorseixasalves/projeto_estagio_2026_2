@@ -25,6 +25,7 @@
 - [Sobre o projeto](#sobre-o-projeto)
 - [Funcionalidades](#funcionalidades)
 - [Stack utilizada](#stack-utilizada)
+- [Estrutura do projeto](#estrutura-do-projeto)
 - [Pré-requisitos](#pré-requisitos)
 - [Como rodar o projeto localmente](#como-rodar-o-projeto-localmente)
 - [Enviando e-mails de verdade (SMTP)](#enviando-e-mails-de-verdade-smtp)
@@ -78,6 +79,60 @@ O sistema tem duas partes:
 | Autenticação | Laravel Breeze (Blade + Alpine.js) |
 | Frontend | Blade + Tailwind CSS + Chart.js |
 | Email | Laravel Mail (Markdown Mailables), driver `log` por padrão |
+
+---
+
+## Estrutura do projeto
+
+```
+projeto_estagio_2026_2/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── SocioController.php       # Página pública, cadastro, dashboard e gráficos
+│   │   │   ├── PlanoController.php       # CRUD de planos de sócio
+│   │   │   ├── SetorController.php       # CRUD de setores do estádio
+│   │   │   └── Auth/                     # Controllers de autenticação (Breeze)
+│   │   └── Middleware/
+│   │       ├── SetLocale.php             # Aplica o idioma (pt/en) salvo na sessão
+│   │       └── SecurityHeaders.php       # Cabeçalhos HTTP de segurança
+│   ├── Mail/
+│   │   └── SocioStatusMail.php           # Email de confirmação/rejeição de cadastro
+│   └── Models/
+│       ├── Socio.php
+│       ├── Plano.php                     # Com scope ativos() e accessor beneficios_lista
+│       ├── Setor.php
+│       └── User.php
+├── database/
+│   ├── migrations/                       # Estrutura das tabelas do banco
+│   └── seeders/                          # AdminSeeder, PlanoSeeder, SetorSeeder
+├── lang/
+│   ├── pt/                               # Mensagens de validação em português
+│   └── en/                               # Mensagens de validação em inglês
+├── resources/
+│   ├── css/app.css                       # Tailwind + animações customizadas
+│   ├── js/app.js                         # Tema, idioma, gráficos (Chart.js), interações
+│   ├── lang/en.json                      # Traduções dos textos da interface
+│   └── views/
+│       ├── socios/create.blade.php       # Página pública (cadastro de sócio)
+│       ├── dashboard.blade.php           # Painel admin (lista, gráficos, ações)
+│       ├── planos/index.blade.php        # Gerenciamento de planos
+│       ├── setores/index.blade.php       # Gerenciamento de setores
+│       ├── emails/socio-status.blade.php # Template do email enviado ao sócio
+│       └── layouts/                      # Layouts base (app, guest, navigation)
+├── routes/
+│   ├── web.php                           # Rotas da aplicação
+│   └── auth.php                          # Rotas de autenticação (Breeze)
+└── public/
+    └── images/EscudoFLU.png              # Escudo oficial do clube
+```
+
+**Alguns pontos de arquitetura:**
+
+- Segue o padrão **MVC** padrão do Laravel: rotas → controllers → models/views.
+- Usa **route model binding** (ex: `Route::patch('/socios/{socio}/confirmar', ...)`), então os controllers recebem o model já resolvido pelo Laravel, sem precisar buscar manualmente por ID.
+- **Scopes locais no Eloquent** (`Plano::ativos()`, `Setor::ativos()`) encapsulam a regra "só mostrar itens ativos", evitando repetir `where('ativo', true)` em vários lugares.
+- **Accessor** `beneficios_lista` no model `Plano` transforma o texto salvo (um benefício por linha) num array pronto para a view, sem lógica de parsing espalhada pelo Blade.
 
 ---
 
