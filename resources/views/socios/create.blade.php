@@ -16,7 +16,7 @@
         }
     </script>
 </head>
-<body class="font-sans bg-[#F5F3F0] dark:bg-[#16151A] text-[#16151A] dark:text-white transition-colors">
+<body class="font-sans bg-[#F5F3F0] dark:bg-[#16151A] text-[#16151A] dark:text-white transition-colors overflow-x-hidden">
 
     <!-- Padrão de fundo -->
     <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -44,6 +44,15 @@
                 <a href="{{ route('login') }}"
                     class="admin-login-btn hidden sm:inline-flex items-center text-sm font-medium border rounded-full px-4 py-1.5 transition-colors duration-200 text-[#16151A] border-black/30 dark:text-white dark:border-white/50">
                     {{ __('Acesso Admin') }}
+                </a>
+
+                <a href="{{ route('login') }}"
+                    class="sm:hidden w-9 h-9 shrink-0 rounded-full flex items-center justify-center border border-black/10 dark:border-white/10"
+                    aria-label="{{ __('Acesso Admin') }}">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <rect x="5" y="11" width="14" height="9" rx="2"/>
+                        <path d="M8 11V8a4 4 0 018 0v3"/>
+                    </svg>
                 </a>
 
                 <a href="{{ route('locale.switch', app()->getLocale() === 'pt' ? 'en' : 'pt') }}"
